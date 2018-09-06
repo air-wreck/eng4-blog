@@ -18,3 +18,5 @@ exclude:
   - Gemfile.lock
   - CNAME
   - README.md
+
+theme: jekyll-theme-minimal

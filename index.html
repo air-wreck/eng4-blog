@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<div class="ui-box">
+  <div class="ui-head">Hello, World!</div>
+  <div class="ui-body">
+    <p>
+      This blog is a yearlong project for Ms. Agazarian's senior English class at High Technology High School. When I'm not dying a death-by-college-apps, death-by-multivar, or death-by-physics, I'll post occasionally about a (computer-related) topic that has struck my fancy.
+    </p>
+    <p>
+      On the technical side of this, the site is being statically generated with Jekyll and hosted on Github Pages. You can find out more by visiting the <a href="https://github.com/air-wreck/eng4-blog">source repository</a>.
+    </p>
+  </div>
+</div>
+
+{% for post in site.posts %}
+<div class="ui-box">
+  <div class="ui-head">
+    <a href="_posts/{{ post.link }}">{{ post.title }}</a>
+    <time>{{ post.date | date: "%b %-d, %Y" }}</time>
+  </div>
+  <div class="ui-body">
+    <strong>Summary:</strong> {{ post.summary }}
+  </div>
+</div>
+{% endfor %}

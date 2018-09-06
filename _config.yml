@@ -1,7 +1,9 @@
-name: Eric's English Blog
-description: A class project
-
+title: Hat Skill
+email: erzheng@ctemc.org
+description: > #
+  This is a yearlong project for Ms. Agazarian's senior English class.
 baseurl: "/eng4-blog"
+github_username: air-wreck
 
 permalink: /:title/
 version: v3.7.7
@@ -10,8 +12,9 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: 'highlight'
-
+include: ['_posts']
 exclude:
   - Gemfile
   - Gemfile.lock
   - CNAME
+  - README.md

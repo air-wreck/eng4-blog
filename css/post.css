@@ -1,0 +1,7 @@
+/* styling for individual blog posts */
+
+.summary {
+  width: calc(100% - 10px);
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}

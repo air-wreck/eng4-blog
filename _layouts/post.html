@@ -3,6 +3,7 @@ layout: default
 ---
 
 <link href="{{ "css/post.css" | relative_url }}" rel="stylesheet">
+<link href="{{ "css/github-markdown.css" | relative_url }}" rel="stylesheet">
 <div class="ui-box">
   <div class="ui-head">
     {{ page.title }}
@@ -12,6 +13,8 @@ layout: default
     <div class="summary">
       <strong>Summary:</strong> {{ page.summary }}
     </div>
-    {{ content }}
+    <div class="markdown-body">
+      {{ content }}
+    </div>
   </div>
 </div>

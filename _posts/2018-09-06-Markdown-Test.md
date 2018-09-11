@@ -20,9 +20,9 @@ Here, we see a *block quote*:
 > -- Vergil, <cite>The Aeneid</cite>
 
 Here, we see a *code snippet*:
-```
+``` scheme
 (define (fib n)
-  (if (<= n 1)
+  (if (<= n 1)  ; should we be checking for negatives?
     1
     (+ (fib (- n 1)) (fib (- n 2)))))
 ```

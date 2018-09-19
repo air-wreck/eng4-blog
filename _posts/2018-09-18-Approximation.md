@@ -4,6 +4,7 @@ title: Approximation Theory
 date: Sep 18, 2018
 summary: this post is about right...
 link: 2018-09-18-Approximation
+needsmath: true
 ---
 
 Over the summer, one mini-project that I worked on was implementing a fairly low-level [library in C](https://github.com/air-wreck/ezlibc). The original idea was to be able to compile small programs without needing to link against `libc`. This was reasonably successful (although I haven't implemented such things as `argv`), but perhaps the most interesting part of the project ended up being the library of math routines. In this post, I would like to delve into some of the fun things that I learned about approximating functions during these endeavors.
@@ -63,7 +64,9 @@ The sine function is really just a glorified wiggly line. It looks something lik
 
 How could we express this function so that we (and thus a computer) could compute an approximation to it? If you've taken AP Calculus before, your mind probably just jumped to \*shudder\* the Taylor series. If you haven't taken calculus (or have already forgotten it), this basically means that we can use magic to derive the formula:
 
-$$\sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \frac{1}{7!}x^7 + ... +\frac{(-1)^n}{(2n+1)!}x^{2n+1}+...$$
+$$
+\sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \frac{1}{7!}x^7 + ... +\frac{(-1)^n}{(2n+1)!}x^{2n+1}+...
+$$
 
 This, again, is a fantastic approximation. We are rewriting the very complicated sine function as a simple polynomial! The more terms we add, the closer and closer it gets to the real sine function; if we could add infinitely many terms, we would get the true value of $$\sin x$$. Even better, there's a formula that will give us an upper bounds on the error (i.e. guarantee that our guess is within a certain range of the true value), so we know exactly how many terms we need to add if we want our estimate to be within, say 0.000001 of the true value. Is this how computers compute $$\sin x$$?
 
@@ -73,7 +76,9 @@ As beautiful as the Taylor series is from an analytical, mathematical standpoint
 
 But let's stick with the idea of trying to approximate the function with a polynomial: polynomials are simple and easy to evaluate. It turns out there are many different ways to get a polynomial that resembles the sine curve over this interval, such as the Chebyshev polynomial. However, there really is one that's "more equal" than the others: the minimax polynomial. It gets its name because it minimizes the maximum error over the interval. Like the Taylor polynomial, it takes the general form:
 
-$$P(x) = a_1x + a_3x^3 + a_5x^5 + ... + a_nx^n$$
+$$
+P(x) = a_1x + a_3x^3 + a_5x^5 + ... + a_nx^n
+$$
 
 except with different values for $$a_1, a_3, a_5, ... a_n$$; it intuitively makes sense that we would model an odd function like sine with an odd polynomial (and this gives us the interval $$-\pi/2 \le x \le 0$$ for free). Calculating the coefficients is much more difficult than it is for the Taylor polynomial (if you're interested, see the Remez exchange algorithm and the equioscillation theorem). But once we've calculated the coefficients once, we can use them over and over again; moreover, the minimax polynomial will generally be orders of magnitude more accurate than a Taylor series of the same degree (in the worst case).
 
@@ -92,7 +97,7 @@ double sin1(double x) {
 }
 ```
 
-That's a lot of multiplications and additions. If we can somehow reorder the polynomial evaluation to use fewer operations, we can shave off some CPU cycles. Hooray for micro-optimization!
+That's a lot of multiplications (9) and additions (2). If we can somehow reorder the polynomial evaluation to use fewer operations, we can shave off some CPU cycles. Hooray for micro-optimization!
 
 [horner evaluation]
 

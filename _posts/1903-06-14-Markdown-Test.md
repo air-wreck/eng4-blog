@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Markdown Test
-date: Sep 6, 2018
+date: Jun 14, 1903
 summary: a demo for markdown styling
-link: 2018-09-06-Markdown-Test
+link: 1903-06-14-Markdown-Test
 ---
 
 This post exists to demonstrate the Markdown styling used for posts. I've included the [Github stylesheet](https://github.com/sindresorhus/github-markdown-css) for very pretty post bodies. The only thing I've changed is the font, which is now Roboto. Some examples follow:

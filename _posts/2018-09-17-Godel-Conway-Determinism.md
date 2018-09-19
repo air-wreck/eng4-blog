@@ -62,4 +62,8 @@ Of course, this doesn't get us out of the moral ramifications of predestination,
 
 I'm just going to stick this note-to-self here, since this post is under construction anyway:
 
-possible future topics: functional programming? information theory?
+possible future topics: functional programming? information theory? approximation theory?
+programming on the nspire: writing the simpson function?
+https://xkcd.com/505/
+
+Okay, the claims in this post aren't *entirely* true. For instance, some algorithms like hashlife can do game of life faster than just stepping through. But I think my point still stands.

@@ -48,7 +48,7 @@ Using this to approximate $$\sqrt{2}$$ with initial guess $$1$$ for just four it
 
 ```
 1
-1.5
+1.5  # okay, that's not correct
 1.41
 1.41421
 1.41421356237
@@ -80,13 +80,12 @@ except with different values for $$a_1, a_3, a_5, ... a_n$$; it intuitively make
 [maybe stick a graph here to show the point]
 
 ### more advanced stuff: argument reduction, efficiency
-Now we have a good idea of how we (and thus a computer) might take an approximation to $$\sin x$$. How can we make our approximation more efficient? After all, time is money. Let's say we're writing 
+Now we have a good idea of how we (and thus a computer) might take an approximation to $$\sin x$$. How can we make our approximation more efficient? After all, time is money. Let's say we're writing
 
 fsin
 horner evaluation
 
 ### real world example: glibc
 
-<!-- we need to include this for MathJax, at least on local
-     locally source this script later -->
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- we need to include this for MathJax to render the LaTeX right -->
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>

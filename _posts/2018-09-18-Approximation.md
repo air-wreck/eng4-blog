@@ -67,7 +67,7 @@ $$\sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \frac{1}{7!}x^7 + ... +\frac{
 
 This, again, is a fantastic approximation. We are rewriting the very complicated sine function as a simple polynomial! The more terms we add, the closer and closer it gets to the real sine function; if we could add infinitely many terms, we would get the true value of $$\sin x$$. Even better, there's a formula that will give us an upper bounds on the error (i.e. guarantee that our guess is within a certain range of the true value), so we know exactly how many terms we need to add if we want our estimate to be within, say 0.000001 of the true value. Is this how computers compute $$\sin x$$?
 
-The answer is a resounding **no**.
+The answer is a resounding **no**<sup>1</sup>.
 
 As beautiful as the Taylor series is from an analytical, mathematical standpoint, it's *fundamentally unsuitable* for what we're trying to do here. The issue is that the Taylor series is an approximation of a function *about a point*. In the above example, we've approximated $$\sin x$$ in the neighborhood of the point $$x = 0$$; it will work beyond this, but we'll need an increasingly large number of terms. So what do we really want to do? We want to approximate $$\sin x$$ *across an interval*, say the interval $$0 \le x \le \pi/2$$. This is a good choice for our interval, since the sine function is *periodic*: once we've approximated it over this interval, we can then repeat it *ad infinitum* to get the rest of the curve.
 
@@ -75,40 +75,37 @@ But let's stick with the idea of trying to approximate the function with a polyn
 
 $$P(x) = a_1x + a_3x^3 + a_5x^5 + ... + a_nx^n$$
 
-except with different values for $$a_1, a_3, a_5, ... a_n$$; it intuitively makes sense that we would model an odd function like sine with an odd polynomial (and this gives us the interval $$-\pi/2 \le x \le 0$$ for free). Calculating the coefficients is much more difficult than it is for the Taylor polynomial (if you're interested, see the Remez exchange algorithm and the equioscillation theorem). But once we've calculated the coefficients once, we can use them over and over again; moreover, the minimax polynomial will generally be orders of magnitude more accurate than a Taylor series of the same degree.
+except with different values for $$a_1, a_3, a_5, ... a_n$$; it intuitively makes sense that we would model an odd function like sine with an odd polynomial (and this gives us the interval $$-\pi/2 \le x \le 0$$ for free). Calculating the coefficients is much more difficult than it is for the Taylor polynomial (if you're interested, see the Remez exchange algorithm and the equioscillation theorem). But once we've calculated the coefficients once, we can use them over and over again; moreover, the minimax polynomial will generally be orders of magnitude more accurate than a Taylor series of the same degree (in the worst case).
 
 [maybe stick a graph here to show the point]
 
-### more advanced stuff: argument reduction, efficiency
-Now we have a good idea of how we (and thus a computer) might take an approximation to $$\sin x$$. How can we make our approximation more efficient? After all, time is money. Let's say we're writing
+### fine-tuning: argument reduction, efficiency
+Now we have a good idea of how we (and thus a computer) might take an approximation to $$\sin x$$. How can we make our approximation more efficient? After all, time is money. Let's say we're writing a math library. How should we implement sine? This seems like a trivial question: we have the polynomial we want; why can't we just implement it? Let's look at a naive implementation with a fifth degree Chebyshev polynomial:
 
-fsin
-horner evaluation
+``` c
+double sin1(double x) {
+  const double a1 =  0.999911528379604;
+  const double a3 = -0.166020004258947;
+  const double a5 =  0.007626662151178;
+
+  return a1*x + a3*x*x*x + a5*x*x*x*x*x;
+}
+```
+
+That's a lot of multiplications and additions. If we can somehow reorder the polynomial evaluation to use fewer operations, we can shave off some CPU cycles. Hooray for micro-optimization!
+
+[horner evaluation]
+
+But there's another caveat: our polynomial is only a good approximation of sine from $$-\pi/2 \le x \le \pi/2$$.
 
 ### real world example: glibc
+Knowing what we now know, let's look at a real-world implementation of the sine function, using perhaps one of the most widely-used ones: the [`glibc` implementation](https://github.com/bminor/glibc/blob/master/sysdeps/ieee754/dbl-64/s_sin.c#L205) (for 64-bit doubles, anyway). For those not familiar with C or Linux, `glibc` is the GNU implementation of the C Standard Library, one of the cornerstones of the POSIX standard. It's a set of C routines that any conforming operating system **must** provide, including quite a few math functions.
 
+---
+<sup>1</sup>Okay, that's not entirely true. Actually, if you look at, for instance, the `glibc` implementation of the [inverse sine function](https://github.com/bminor/glibc/blob/master/sysdeps/ieee754/dbl-64/doasin.c#L66), you'll see that they're actually using the Taylor series. I just wanted to make a point. As a side note, they're also using the Horner evaluation method we discussed earlier.
 
-[//]:# BACKGROUND STUFF
-[//]:# we need to include this for MathJax to render the LaTeX right
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-[//]:# let's make sure MathJax rendered equations overflow properly
-<style>
-.mathjax-wrapper {
-  overflow-x: auto;
-  overflow-y: visible;
-}
-</style>
-<script>
-MathJax.Hub.Register.StartupHook("End", () => {
-  // wrap each MathJax display mode equation for overflow
-  Array.from(document.getElementsByClassName("MJXc-display"))
-    .forEach(equation => {
-      let parent = equation.parentNode;
-      let wrapper = document.createElement("div");
-      wrapper.className = "mathjax-wrapper";
+### bonus: IEEE 754
+Throughout all this time, we've talked about numbers in computers as if they were practically arbitrary in precision, and basic operations on them (i.e. addition and multiplication) were completely precise. Unfortunately, that's not the case. The relevant standard for describing how computers implement floating-point numbers is IEEE 754.
 
-      parent.replaceChild(wrapper, equation);
-      wrapper.appendChild(equation);
-    });
-});
-</script>
+### bonus: what about hardware?
+As it turns out, computing the sine of a value is quite a common task--so common that Intel decided to include an `fsin` instruction in its `x86` architecture. If it's available on your computer, it seems like this would be the obvious way to go. However, as [this blog post](https://randomascii.wordpress.com/2014/10/09/intel-underestimates-error-bounds-by-1-3-quintillion/) shows, sometimes the tried-and-true library functions can be your best bet, and not just for portability reasons.

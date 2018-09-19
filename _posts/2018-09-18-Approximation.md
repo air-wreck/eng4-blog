@@ -87,5 +87,28 @@ horner evaluation
 
 ### real world example: glibc
 
-<!-- we need to include this for MathJax to render the LaTeX right -->
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+[//]:# BACKGROUND STUFF
+[//]:# we need to include this for MathJax to render the LaTeX right
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+[//]:# let's make sure MathJax rendered equations overflow properly
+<style>
+.mathjax-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+</style>
+<script>
+MathJax.Hub.Register.StartupHook("End", () => {
+  // wrap each MathJax display mode equation for overflow
+  Array.from(document.getElementsByClassName("MJXc-display"))
+    .forEach(equation => {
+      let parent = equation.parentNode;
+      let wrapper = document.createElement("div");
+      wrapper.className = "mathjax-wrapper";
+
+      parent.replaceChild(wrapper, equation);
+      wrapper.appendChild(equation);
+    });
+});
+</script>

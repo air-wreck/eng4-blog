@@ -135,7 +135,7 @@ def sin_cheby(x):
 
 That's just 4 multiplications (including evaluating `x ** 2`) and 2 additions!
 
-But there's another caveat: our polynomial is only a good approximation of sine from $$-\pi/2 \le x \le \pi/2$$. What is the user wants to take the sine of, say, 65? Sine the sine function is periodic, we're in luck: we just need to somehow transform the angle to get an equivalent angle that's within our domain. Without getting into the details of floating-point modulus, we can essentially take the angle modulo 2π to get an identical angle inside the unit circle. Then we'll use the symmetry of the unit circle to get an equivalent angle within our domain. Putting it all together, we get an ultimate sine routine:
+But there's another caveat: our polynomial is only a good approximation of sine from $$-\pi/2 \le x \le \pi/2$$. What if the user wants to take the sine of, say, 65? Sine the sine function is periodic, we're in luck: we just need to somehow transform the angle to get an equivalent angle that's within our domain. Without getting into the details of floating-point modulus, we can essentially take the angle modulo 2π to get an identical angle inside the unit circle. Then we'll use the symmetry of the unit circle to get an equivalent angle within our domain. Putting it all together, we get an ultimate sine routine:
 
 ``` python
 # we only import numpy to get an accurate value of pi

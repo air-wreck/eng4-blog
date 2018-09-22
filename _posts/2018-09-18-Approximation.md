@@ -84,7 +84,7 @@ $$
 
 except with different values for $$a_1, a_3, a_5, ... a_n$$; it intuitively makes sense that we would model an odd function like sine with an odd polynomial (and this gives us the interval $$-\pi/2 \le x \le 0$$ for free). Calculating the coefficients is much more difficult than it is for the Taylor polynomial (if you're interested, see the Remez exchange algorithm and the equioscillation theorem). But once we've calculated the coefficients once, we can use them over and over again; moreover, the minimax polynomial will generally be orders of magnitude more accurate than a Taylor series of the same degree (in the worst case).
 
-Here's a a graph of how to real sine function (blue), the fifth-degree Taylor series (orange), and the fifth-degree Chebyshev polynomial (green) compare between 0 and 2:
+Here's a a graph of how the real sine function (blue), the fifth-degree Taylor series (orange), and the fifth-degree Chebyshev polynomial (green) compare between 0 and 2:
 
 <img alt="a graph of the sine function versus various polynomial approximations" src="../../img/plot_taylor_cheby.png">
 

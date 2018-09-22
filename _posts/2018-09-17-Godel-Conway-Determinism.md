@@ -6,8 +6,6 @@ summary: a musing on computers and philosophy
 link: 2018-09-17-Godel-Conway-Determinism
 ---
 
-`warning:` this post is not yet done! it's due 9/20, so whatever
-
 (Yes, the post title was supposed to sound [like this](https://archive.org/details/GEBen_201404). I haven't read it, but I've heard it's very good.)
 
 (Also, if you're not into naïve teenage musings, you might as well leave now.)
@@ -60,10 +58,7 @@ Of course, this doesn't get us out of the moral ramifications of predestination,
 
 ---
 
-I'm just going to stick this note-to-self here, since this post is under construction anyway:
+### Footnotes
+[Relevant XKCD](https://xkcd.com/505/)
 
-possible future topics: functional programming? information theory? approximation theory?
-programming on the nspire: writing the simpson function?
-https://xkcd.com/505/
-
-Okay, the claims in this post aren't *entirely* true. For instance, some algorithms like hashlife can do game of life faster than just stepping through. But I think my point still stands.
+Okay, the claims in this post aren't *entirely* true. For instance, some algorithms like Hashlife can do game of life faster than just stepping through. But I think my point still stands.

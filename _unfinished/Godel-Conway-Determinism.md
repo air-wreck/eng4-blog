@@ -3,7 +3,7 @@ layout: post
 title: Gödel, Conway, and Determinism
 date: Sep 17, 2018
 summary: a musing on computers and philosophy
-link: 2018-09-17-Godel-Conway-Determinism
+link: Godel-Conway-Determinism
 ---
 
 (Yes, the post title was supposed to sound [like this](https://archive.org/details/GEBen_201404). I haven't read it, but I've heard it's very good.)

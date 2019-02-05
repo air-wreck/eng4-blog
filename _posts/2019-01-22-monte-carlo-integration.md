@@ -143,3 +143,13 @@ print np.average([2 * np.abs(res - true_val) < hi - lo
 Well, this was a pretty fun journey. We got to see how, through the careful application of statistics, we can use random simulations to approximate complex deterministic phenomena, using the example of a definite integral. Maybe someone can come up with a better simulation for doing this than the basic average value one I used.
 
 (The code in this post was sort of all over the place; while I think it flowed better with the exposition, it's probably difficult to gather in one place. If you'd like a copy, I've complied the important bits [here](../../scripts/monte_test.py).) (Does that make me a [literate programmer](https://en.wikipedia.org/wiki/Literate_programming)?)
+
+---
+### corrigendum
+I didn't want to edit the post body (because the deadline for the marking period 2 assignment has already passed), but I noticed that the logic in that last code example is pretty convoluted. I think a much clearer version is:
+
+``` python
+print np.average([lo <= true_val <= hi
+                  for _, lo, hi in [mc_int(np.sin) for _ in range(N)]])
+```
+

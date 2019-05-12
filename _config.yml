@@ -2,7 +2,6 @@ title: console.blog()
 email: erzheng@ctemc.org
 description: > #
   This is a yearlong project for Ms. Agazarian's senior English class.
-baseurl: "/eng4-blog"
 github_username: air-wreck
 
 permalink: /:title/

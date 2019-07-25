@@ -5,3 +5,9 @@
   border-bottom: 1px solid black;
   margin-bottom: 10px;
 }
+
+.markdown-body a {
+  color: black;
+  text-decoration: underline;
+}
+

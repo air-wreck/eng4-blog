@@ -49,11 +49,11 @@ header {
   font-family: "Roboto Slab";
   width: 100%;
   box-sizing: border-box;
-  color: white;
-  background-color: #006052;
+  color: black;
+  /* background-color: #006052; */
   padding: 10px;
 }
-header h2 {
+header h1 {
   margin-bottom: 0;
 }
 header a {
@@ -68,7 +68,6 @@ footer {
   text-align: center;
   font-family: "Roboto";
   width: 100%;
-  border-top: 1px solid #006052;
   margin-top: 30px;
 }
 footer p {
@@ -82,22 +81,22 @@ footer p a {
 /* basic layout box for content */
 .ui-box {
   width: 80%;
-  padding: 10px;
   margin: 0 auto;
   margin-top: 20px;
+  box-shadow: 5px 5px;
 }
 .ui-head {
   background-color: #017766;
   font-family: "Roboto Slab";
   color: white;
   font-size: 18px;
-  border: 1px solid #017766;
+  border: 1px solid black;
   padding: 10px;
 }
 .ui-head a {
   color: white;
 }
-.ui-head time {
+time {
   background-color: #b2e8e0;
   color: black;
   font-family: "Roboto";
@@ -110,7 +109,7 @@ footer p a {
 .ui-body {
   background-color: #ededed;
   font-family: "Roboto";
-  font-weight: 300;
+  font-weight: 400;
   border: 1px solid black;
   border-top: none;
   padding: 10px;
@@ -125,4 +124,14 @@ footer p a {
 .ui-body a {
   color: black;
   text-decoration: underline;
+}
+.postlist {
+  list-style-type: none;
+  padding: 0px;
+}
+.postlist li td {
+  vertical-align: top;
+}
+.postlist li span {
+  font-style: italic;
 }

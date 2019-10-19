@@ -6,25 +6,59 @@ layout: default
   <div class="ui-head">Hello, World!</div>
   <div class="ui-body">
     <p>
-      This blog is a yearlong project for Ms. Agazarian's senior English class at High Technology High School. When I'm not dying a death-by-college-apps, death-by-multivar, or death-by-physics, I'll post occasionally about a (computer-related) topic that has struck my fancy.
+      Is that a...human visitor? On <em>my</em> blog? Welcome to my little corner of the Internet, where I post occasionally about (generally computer-related) topics that strike my fancy.
     </p>
     <p>
       On the technical side of this, the site is being statically generated with Jekyll and hosted on Github Pages. You can find out more by visiting the <a href="https://github.com/air-wreck/eng4-blog">source repository</a>.
     </p>
     <p>
-      A note on comments: since this is a static site, comments aren't really a thing. For now, if you have any feedback, please send me an email (address in the page footer). If this becomes an issue, I'll look into implementing a comment system.
+      A note on comments: since this is a static site, comments aren't really a thing. For now, if you have any feedback, please send me an email (address can be found by digging around in the website linked in the footer). If this becomes an issue, I'll look into implementing a comment system.
+    </p>
+  </div>
+</div>
+
+<div class="ui-box">
+  <div class="ui-head">Who are you, and why do you have a blog?</div>
+  <div class="ui-body">
+    <p>
+      I'm Eric, and I'm currently studying computer science at Carngeie Mellon University. As one might expect, I like computers. I also have some other interests that may pop up from time to time.
+    </p>
+    <p>
+      Why do I have a blog? I don't know, it seems like a popular thing to do. Actually, this blog was originally a yearlong project for Ms. Agazarian's senior English class at High Technology High School. If you scroll back far enough, you can even find posts from that era! After I finished high school, I decided that I might as well keep it, so here you go.
+    </p>
+    <p>
+      Then again, can I really be said to have a blog if I only post once every few months?
     </p>
   </div>
 </div>
 
 {% for post in site.posts %}
-<div class="ui-box">
-  <div class="ui-head">
-    <a href="_posts/{{ post.link }}">{{ post.title }}</a>
-    <time>{{ post.date | date: "%b %-d, %Y" }}</time>
-  </div>
-  <div class="ui-body">
-    <strong>Summary:</strong> {{ post.summary }}
-  </div>
-</div>
+  {% assign currentdate = post.date | date: "%Y" %}
+  {% if currentdate != date %}
+    {% unless forloop.first %}</ul></div></div>{% endunless %}
+    <div class="ui-box">
+    <div class="ui-head">
+      Posts from {{ currentdate }}
+    </div>
+    <div class="ui-body">
+    {% assign date = currentdate %}
+    <ul class="postlist">
+  {% endif %}
+  <li>
+    <table>
+      <tr>
+        <td>
+          <time>{{ post.date | date: "%Y-%m-%d" }}</time>&nbsp;
+        </td>
+        <td>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          <br>
+          <span>
+            <strong>Summary:</strong> {{ post.summary }}
+          </span>
+        </td>
+      </tr>
+    </table>
+  </li>
+  {% if forloop.last %}</div>{% endif %}
 {% endfor %}

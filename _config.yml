@@ -1,5 +1,5 @@
 title: console.blog()
-email: erzheng@ctemc.org
+email: ericzheng@cmu.edu
 description: > #
   This is a yearlong project for Ms. Agazarian's senior English class.
 github_username: air-wreck
@@ -19,4 +19,3 @@ exclude:
   - README.md
   - _unfinished/*
 
-theme: jekyll-theme-minimal

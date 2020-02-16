@@ -4,7 +4,8 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  color: #24292e;
+  /* color: #24292e; */
+  color: black;
   font-family: "Roboto";
   font-size: 16px;
   line-height: 1.5;
@@ -419,8 +420,10 @@
 
 .markdown-body blockquote {
   padding: 0 1em;
-  color: #6a737d;
-  border-left: 0.25em solid #dfe2e5;
+  /* color: #6a737d; */
+  color: black;
+  /* border-left: 0.25em solid #dfe2e5; */
+  border-left: 0.25em solid black;
 }
 
 .markdown-body blockquote>:first-child {

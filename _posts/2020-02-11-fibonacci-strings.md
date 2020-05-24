@@ -51,6 +51,6 @@ So how many valid leaves are there in the overall tree of depth $$n+1$$? Well, i
 In fact, it easy to see how the claim generalizes to binary strings of length $$n$$ without any consecutive sequence of $$k$$ zeros for any natural $$n$$ and $$k$$.
 
 ---
-<sup>1</sup> Fun fact: $$2^n = n^{n / \log_2 n}$$. This is not very difficult to see, but it took me an embarrassingly long time to realize this.
+<sup>1</sup> Fun fact: $$2^n = n^{n / \log_2 n}$$. This is not very difficult to see, but it took me an embarrassingly long time to realize this. This is not what I was trying to prove, but it greatly simplified the bound I was trying to prove. I still didn't manage to prove the full bound.
 
 <sup>2</sup> Here we take the conventional definition of the Fibonacci numbers as $$\langle f \rangle = 1, 1, 2, 3, 5, \ldots$$, where we start indexing at zero. Hence we consider the zeroth Fibonacci number to be $$f_0 = 1$$ and the fourth to be $$f_4 = 5$$.
